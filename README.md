@@ -1,0 +1,2 @@
+# AccPoj
+Symulator Akcelerometru Pojemnościowego
