@@ -13122,14 +13122,12 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
 <span class="c1">#!/usr/bin/env python</span>
-<span class="o">%</span><span class="k">matplotlib</span> notebook
-<span class="kn">import</span> <span class="nn">pip</span>
-<span class="n">pip</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s1">&#39;install&#39;</span><span class="p">,</span><span class="s1">&#39;matplotlib&#39;</span><span class="p">])</span>
+
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="c1"># import bqplot.pyplot as plt</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="kn">import</span> <span class="nn">bqplot.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">pi</span>
 
 <span class="n">f</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="c1"># czest.</span>
@@ -13254,35 +13252,6 @@ div#notebook {
 
     
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
-Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
-To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of running pip directly.
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Requirement already satisfied: matplotlib in c:\users\wojtek\appdata\roaming\python\python38\site-packages (3.3.3)
-Requirement already satisfied: cycler&gt;=0.10 in c:\users\wojtek\appdata\local\programs\python\python38-32\lib\site-packages (from matplotlib) (0.10.0)
-Requirement already satisfied: python-dateutil&gt;=2.1 in c:\users\wojtek\appdata\local\programs\python\python38-32\lib\site-packages (from matplotlib) (2.8.1)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\wojtek\appdata\local\programs\python\python38-32\lib\site-packages (from matplotlib) (1.2.0)
-Requirement already satisfied: numpy&gt;=1.15 in c:\users\wojtek\appdata\local\programs\python\python38-32\lib\site-packages (from matplotlib) (1.18.5)
-Requirement already satisfied: pillow&gt;=6.2.0 in c:\users\wojtek\appdata\local\programs\python\python38-32\lib\site-packages (from matplotlib) (8.0.1)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in c:\users\wojtek\appdata\local\programs\python\python38-32\lib\site-packages (from matplotlib) (2.4.7)
-Requirement already satisfied: six in c:\users\wojtek\appdata\local\programs\python\python38-32\lib\site-packages (from cycler&gt;=0.10-&gt;matplotlib) (1.15.0)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    
-
 
 
   <div class="output_subarea output_widget_view ">
@@ -13319,6 +13288,25 @@ Requirement already satisfied: six in c:\users\wojtek\appdata\local\programs\pyt
     </button>
   </div>
 
+</div>
+
+<div class="output_area">
+
+    
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-8-baf4eef948f7&gt;</span> in <span class="ansi-cyan-fg">on_button_clicked</span><span class="ansi-blue-intense-fg ansi-bold">(b)</span>
+<span class="ansi-green-fg">     74</span> <span class="ansi-red-intense-fg ansi-bold">#     widgets.VBox([sli,wart])</span>
+<span class="ansi-green-fg">     75</span>     f <span class="ansi-yellow-intense-fg ansi-bold">=</span> wart<span class="ansi-yellow-intense-fg ansi-bold">.</span>value
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 76</span><span class="ansi-yellow-intense-fg ansi-bold">     </span>fig <span class="ansi-yellow-intense-fg ansi-bold">=</span> vibPlot<span class="ansi-yellow-intense-fg ansi-bold">(</span>f<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     77</span>     plt<span class="ansi-yellow-intense-fg ansi-bold">.</span>close<span class="ansi-yellow-intense-fg ansi-bold">(</span>fig<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     78</span>     plt<span class="ansi-yellow-intense-fg ansi-bold">.</span>show<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;vibPlot&#39; is not defined</pre>
+</div>
 </div>
 
 </div>
