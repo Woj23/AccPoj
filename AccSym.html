@@ -13124,11 +13124,15 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">bqplot.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># import bqplot.pyplot as plt</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">pi</span>
 
 <span class="n">f</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="c1"># czest.</span>
 <span class="n">A</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="c1"># amp</span>
+
+
+    
 
 <span class="k">def</span> <span class="nf">vibr</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
@@ -13140,7 +13144,6 @@ div#notebook {
 
 <span class="k">def</span> <span class="nf">zm_wart</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
     <span class="n">sli</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">wart</span><span class="o">.</span><span class="n">value</span>
-    <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">sli</span><span class="p">,</span><span class="n">wart</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">w</span>
 
 <span class="n">wart</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">BoundedIntText</span><span class="p">(</span>
@@ -13148,15 +13151,15 @@ div#notebook {
     <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Text:&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Frequency:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="n">sli</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
     <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Test:&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Frequency:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span>
@@ -13164,13 +13167,36 @@ div#notebook {
     <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;d&#39;</span>
 <span class="p">)</span>
 
-<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="p">)</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Plot&quot;</span><span class="p">)</span>
 
 <span class="n">output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
 
+<span class="c1"># def vibPlot(f):</span>
+<span class="c1">#     f = sli.value</span>
+<span class="c1">#     t = np.arange(0,0.8*np.pi,0.01)   # start,stop,step</span>
+<span class="c1">#     y = A * np.cos(2*pi*f*t)</span>
+<span class="c1">#     fig = plt.figure(title=&#39;Drgania&#39;)</span>
+<span class="c1">#     fig = plt.plot(t,y,color=(255,0,0))</span>
+<span class="c1">#     return fig</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="k">def</span> <span class="nf">plotVib</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>   <span class="c1"># start,stop,step</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    
+    
+
 <span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
     <span class="n">sli</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">wart</span><span class="o">.</span><span class="n">value</span>
-    <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">sli</span><span class="p">,</span><span class="n">wart</span><span class="p">])</span>
+<span class="c1">#     widgets.VBox([sli,wart])</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">wart</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">vibPlot</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">sli</span><span class="p">,</span><span class="n">wart</span><span class="p">,</span><span class="n">fig</span><span class="p">])</span>
+
 <span class="c1">#     widgets.display(sli,wart)</span>
 
 <span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
@@ -13181,20 +13207,27 @@ div#notebook {
 <span class="c1"># plt.scatter(np.random.randn(size), np.random.randn(size), color=np.random.randn(size))</span>
 <span class="c1"># plt.show()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">vibr</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)))</span>
+<span class="c1"># print(str(vibr(0.05)))</span>
 
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>   <span class="c1"># start,stop,step</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
-
+<span class="c1"># fig = vibPlot(f)</span>
 
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># t = np.arange(0,0.8*np.pi,0.01)   # start,stop,step</span>
+<span class="c1"># y = A * np.cos(2*pi*f*t)</span>
+<span class="c1"># plt.plot(t,y)</span>
+<span class="c1"># plt.show()</span>
+
+<span class="n">interact</span><span class="p">(</span><span class="n">plotVib</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">sli</span><span class="p">)</span>
+
+
 
 <span class="c1"># print(y)</span>
 <span class="c1"># print(t)</span>
 
-<span class="c1"># widgets.VBox([sli,wart,button,fig])</span>
+<span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">sli</span><span class="p">,</span><span class="n">wart</span><span class="p">,</span><span class="n">button</span><span class="p">])</span>
+
+<span class="c1"># widgets.interact(vibPlot,sli=(0,10))</span>
 
 <span class="c1"># size = 100</span>
 
@@ -13231,10 +13264,14 @@ div#notebook {
 
     
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>2.4270509831248424
-</pre>
-</div>
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
 </div>
 
 <div class="output_area">
