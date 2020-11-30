@@ -13332,11 +13332,13 @@ div#notebook {
 <span class="p">}</span>
 
 <span class="c1"># nbi.line(time, y_values, f=(0.5,10))</span>
-<span class="c1"># nbi.line(time, odwrCos, f=(0.5,10))</span>
+<span class="n">odwr</span> <span class="o">=</span> <span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">odwrCos</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
 
 
-<span class="n">vboxcomponent</span> <span class="o">=</span> <span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">pojemnosc</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">eoer</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">1.00054</span><span class="p">),</span> <span class="n">S</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.9</span><span class="p">),</span><span class="n">d</span><span class="o">=</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">options</span><span class="o">=</span><span class="n">opts</span> <span class="p">)</span>
+<span class="n">vboxcom</span> <span class="o">=</span> <span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">pojemnosc</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">eoer</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">1.00054</span><span class="p">),</span> <span class="n">S</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.9</span><span class="p">),</span><span class="n">d</span><span class="o">=</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">options</span><span class="o">=</span><span class="n">opts</span> <span class="p">)</span>
+
+<span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">vboxcom</span><span class="p">,</span><span class="n">odwr</span><span class="p">])</span>
 </pre></div>
 
     </div>
