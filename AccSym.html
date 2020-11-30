@@ -13114,13 +13114,14 @@ div#notebook {
 
   
 
-  <div class="nbinteract-hide_in
+  <div class="nbinteract-hide_in nbinteract-hide_out
       cell border-box-sizing code_cell rendered">
     <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
+<span class="c1"># nbi:hide_out</span>
 
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
@@ -13289,13 +13290,14 @@ div#notebook {
 
   
 
-  <div class="
+  <div class="nbinteract-hide_in
       cell border-box-sizing code_cell rendered">
     <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
@@ -13306,7 +13308,7 @@ div#notebook {
 
 <span class="k">def</span> <span class="nf">x_values</span><span class="p">():</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">y_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
 
 <span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
