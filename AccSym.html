@@ -13121,12 +13121,12 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
-<span class="c1">#!/usr/bin/env python</span>
 
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
 <span class="c1"># import bqplot.pyplot as plt</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">pi</span>
 
@@ -13134,9 +13134,13 @@ div#notebook {
 <span class="n">A</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="c1"># amp</span>
 
 
-    
+<span class="k">def</span> <span class="nf">x_time</span><span class="p">(</span><span class="n">ran</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ran</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>   <span class="c1"># start,stop,step</span>
 
-<span class="k">def</span> <span class="nf">vibr</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">igrek</span><span class="p">(</span><span class="n">iks</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iks</span>
+
+<span class="k">def</span> <span class="nf">vibr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">f</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -13183,10 +13187,10 @@ div#notebook {
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
-<span class="k">def</span> <span class="nf">plotVib</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>   <span class="c1"># start,stop,step</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="c1"># def plotVib(f):</span>
+<span class="c1">#     t = </span>
+<span class="c1">#     y = A * np.cos(2*pi*f*t)</span>
+<span class="c1">#     plt.plot(t,y)</span>
     
     
 
@@ -13220,7 +13224,9 @@ div#notebook {
 <span class="c1"># plt.plot(t,y)</span>
 <span class="c1"># plt.show()</span>
 
-<span class="n">interact</span><span class="p">(</span><span class="n">plotVib</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">sli</span><span class="p">)</span>
+
+
+<span class="c1"># interact(plotVib,f=sli)</span>
 
 
 
@@ -13233,11 +13239,25 @@ div#notebook {
 
 <span class="c1"># size = 100</span>
 
+<span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x_time</span><span class="p">,</span><span class="n">igrek</span><span class="p">,</span><span class="n">ran</span><span class="o">=</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">options</span><span class="o">=</span><span class="n">opts</span><span class="p">)</span>
+
 <span class="c1"># plt.figure(title=&#39;Scatter plot with colors&#39;)</span>
 <span class="c1"># plt.scatter(np.random.randn(size), np.random.randn(size), color=np.random.randn(size))</span>
 <span class="c1"># plt.show()</span>
 
 <span class="c1"># interact(zm_wart,w=sli.value)</span>
+
+<span class="k">def</span> <span class="nf">x_values</span><span class="p">():</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">y_values</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">sd</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">xs</span> <span class="o">+</span> <span class="n">sd</span>
+
+<span class="c1"># opts = {</span>
+<span class="c1">#     &#39;xlim&#39;: (0, 50),</span>
+<span class="c1">#     &#39;ylim&#39;: (0, 55),</span>
+<span class="c1">#     &#39;animation_duration&#39;: 250,</span>
+<span class="c1"># }</span>
+
+<span class="c1"># nbi.line(x_values, y_values, sd=(1, 10), options=opts)</span>
 </pre></div>
 
     </div>
@@ -13262,19 +13282,42 @@ div#notebook {
 
 </div>
 
-<div class="output_area">
+</div>
+</div>
 
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
   </div>
 
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">pi</span>
+
+<span class="c1"># def vibr(t,f):</span>
+<span class="c1">#     return A*cos(2*pi*f*t)</span>
+
+<span class="k">def</span> <span class="nf">x_values</span><span class="p">():</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">y_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+
+    </div>
 </div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
 
 <div class="output_area">
 
