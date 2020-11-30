@@ -13297,8 +13297,9 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
+<span class="c1"># import matplotlib.pyplot</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span><span class="p">,</span> <span class="n">fixed</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">pi</span>
@@ -13306,11 +13307,36 @@ div#notebook {
 <span class="c1"># def vibr(t,f):</span>
 <span class="c1">#     return A*cos(2*pi*f*t)</span>
 
-<span class="k">def</span> <span class="nf">x_values</span><span class="p">():</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">time</span><span class="p">():</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.001</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">pojemnosc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">eoer</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">d</span><span class="p">):</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="mf">0.03</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="c1">#     dx = 10000000000</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">eoer</span><span class="o">*</span><span class="n">S</span><span class="o">/</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="n">dx</span><span class="p">)</span>
+<span class="c1">#     print(ret)</span>
+    <span class="k">return</span> <span class="n">ret</span>
+
 <span class="k">def</span> <span class="nf">y_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
 
-<span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">odwrCos</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Capacitance fluctuation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Capacitance&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+<span class="c1">#     &#39;xlim&#39;: (0, 700),</span>
+<span class="c1">#     &#39;animation_duration&#39;: 250 # spr puzniej</span>
+<span class="p">}</span>
+
+<span class="c1"># nbi.line(time, y_values, f=(0.5,10))</span>
+<span class="c1"># nbi.line(time, odwrCos, f=(0.5,10))</span>
+
+
+
+<span class="n">vboxcomponent</span> <span class="o">=</span> <span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">pojemnosc</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">eoer</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">1.00054</span><span class="p">),</span> <span class="n">S</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.9</span><span class="p">),</span><span class="n">d</span><span class="o">=</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">options</span><span class="o">=</span><span class="n">opts</span> <span class="p">)</span>
 </pre></div>
 
     </div>
