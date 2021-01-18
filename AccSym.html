@@ -13114,41 +13114,95 @@ div#notebook {
 
   
 
-  <div class="nbinteract-hide_in nbinteract-hide_out
+  <div class="
       cell border-box-sizing code_cell rendered">
     <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
-<span class="c1"># nbi:hide_out</span>
-
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">Layout</span><span class="p">,</span> <span class="n">Label</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">Layout</span>
+<span class="kn">import</span> <span class="nn">IPython</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">pi</span>
-<span class="kn">import</span> <span class="nn">IPython</span>
 
-<span class="c1"># import matplotlib.pyplot</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
 
-<span class="c1"># def vibr(t,f):</span>
-<span class="c1">#     return A*cos(2*pi*f*t)</span>
-
-<span class="n">f</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<span class="n">aw</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
     <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-    <span class="nb">max</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
     <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Frequency:&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;f [Hz]:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="c1">#     orientation=&#39;vertical&#39;,</span>
     <span class="n">readout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;d&#39;</span>
+<span class="c1">#     readout_format=&#39;f&#39;</span>
+<span class="p">)</span>
+<span class="n">bw</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;f [Hz]:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="c1">#     orientation=&#39;vertical&#39;,</span>
+    <span class="n">readout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="c1">#     readout_format=&#39;f&#39;</span>
 <span class="p">)</span>
 
-<span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">interactive</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">aw</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">bw</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">aw</span><span class="p">)</span>
+
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+
+<span class="n">A_V</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="n">aw</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+    <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;Type something&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;String:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">amp_V</span><span class="p">(</span><span class="n">A_V</span><span class="p">):</span>   
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+    <span class="n">A_V</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">aw</span><span class="o">.</span><span class="n">value</span><span class="o">+</span><span class="n">bw</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">A_V</span><span class="p">)</span>
+
+<span class="n">thread2</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">amp_V</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">A_V</span><span class="p">,))</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">A_V</span><span class="p">)</span>
+<span class="n">thread2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">progress</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatProgress</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="n">progress</span><span class="p">):</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">A_V</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">2</span><span class="o">+</span><span class="n">aw</span><span class="o">.</span><span class="n">value</span>
+
+<span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">work</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">progress</span><span class="p">,))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>
+<span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13163,17 +13217,66 @@ div#notebook {
 
     
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-61-0828957549ce&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">     27</span> )
-<span class="ansi-green-fg">     28</span> 
-<span class="ansi-green-intense-fg ansi-bold">---&gt; 29</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>IPython<span class="ansi-yellow-intense-fg ansi-bold">.</span>display<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;a&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
-<span class="ansi-red-intense-fg ansi-bold">TypeError</span>: &#39;module&#39; object is not callable</pre>
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
 </div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>a
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
 </div>
 
 </div>
@@ -13190,13 +13293,14 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
-
+<span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">Layout</span>
 <span class="kn">import</span> <span class="nn">IPython</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">pi</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="c1"># import matplotlib.pyplot</span>
 
@@ -13204,7 +13308,10 @@ div#notebook {
 <span class="c1">#     return A*cos(2*pi*f*t)</span>
 
 
-<span class="n">label</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;120px&#39;</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="s1">&#39;30px&#39;</span><span class="p">)</span>
+<span class="c1"># label = Layout(width=&#39;120px&#39;,height=&#39;30px&#39;)</span>
+
+<span class="c1">############################# WIDGETY #############################</span>
+
 <span class="n">f_wid</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
     <span class="n">value</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
     <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
@@ -13244,20 +13351,55 @@ div#notebook {
 <span class="c1">#     readout_format=&#39;f&#39;</span>
 <span class="p">)</span>
 
+<span class="n">A_wid</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A [mm]:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="c1">#     orientation=&#39;vertical&#39;,</span>
+    <span class="n">readout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="c1">#     readout_format=&#39;f&#39;</span>
+<span class="p">)</span>
+
+<span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">}</span>
+
+<span class="n">A_V</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="s1">&#39;initializing&#39;</span><span class="p">,</span>
+    <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Amplituda sygnału:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">style</span>
+<span class="p">)</span>
+<span class="n">A_C</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="s1">&#39;initializing&#39;</span><span class="p">,</span>
+    <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;shalom&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Amplituda sygnału:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">style</span>
+    
+<span class="p">)</span>
+
+<span class="c1">############################# FUNKCJE #############################</span>
+
 <span class="k">def</span> <span class="nf">f_val</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">value</span>
 
-<span class="k">def</span> <span class="nf">time</span><span class="p">():</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">times</span><span class="p">():</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.001</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">pojemnosc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">eoer</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">d</span><span class="p">):</span>
-    <span class="n">dx</span> <span class="o">=</span> <span class="mf">0.03</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">pojemnosc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">eoer</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">Amp</span> <span class="o">=</span> <span class="mf">0.001</span><span class="o">*</span><span class="n">A</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">Amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">eoer</span><span class="o">*</span><span class="n">S</span><span class="o">/</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="n">dx</span><span class="p">)</span>
 <span class="c1">#     print(ret)</span>
     <span class="k">return</span> <span class="n">ret</span>
 
 <span class="c1"># Vs - podane napięcie roznicowe = 5V</span>
-<span class="k">def</span> <span class="nf">napiecie</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span><span class="n">eoer</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">Vs</span><span class="p">):</span>
-    <span class="n">dx</span> <span class="o">=</span> <span class="mf">0.03</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">napiecie</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span><span class="n">eoer</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">Vs</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">Amp</span> <span class="o">=</span> <span class="mf">0.001</span><span class="o">*</span><span class="n">A</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">Amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
     <span class="n">C1</span> <span class="o">=</span> <span class="n">eoer</span><span class="o">*</span><span class="n">S</span><span class="o">/</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="n">dx</span><span class="p">)</span>
     <span class="n">C2</span> <span class="o">=</span> <span class="n">eoer</span><span class="o">*</span><span class="n">S</span><span class="o">/</span><span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="n">dx</span><span class="p">)</span>
     <span class="n">Vout</span> <span class="o">=</span> <span class="p">(</span><span class="n">C1</span><span class="o">-</span><span class="n">C2</span><span class="p">)</span><span class="o">*</span><span class="n">Vs</span><span class="o">/</span><span class="p">(</span><span class="n">C1</span><span class="o">+</span><span class="n">C2</span><span class="p">)</span>
@@ -13266,43 +13408,73 @@ div#notebook {
 <span class="k">def</span> <span class="nf">y_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">odwrCos</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">amplitudes</span><span class="p">(</span><span class="n">A_V</span><span class="p">,</span><span class="n">A_C</span><span class="p">):</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">A_V</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pojemnosc</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.00054</span><span class="p">,</span><span class="n">S_wid</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="n">d_wid</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">A_wid</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">A_C</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">napiecie</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.00054</span><span class="p">,</span><span class="n">S_wid</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="n">d_wid</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="n">Vs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">A_wid</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+    
+    
+<span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">amplitudes</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">A_V</span><span class="p">,</span><span class="n">A_C</span><span class="p">,))</span>
+
+<span class="c1"># def amp_V(A_V):</span>
+<span class="c1">#     time.sleep(0.2)</span>
+<span class="c1">#     A_V.value = str(pojemnosc(0,0,1.00054,S_wid.value,d = d_wid.value,A = A_wid.value))</span>
+    
+<span class="c1"># threadA_V = threading.Thread(target=amp_V, args=(A_V,))</span>
 
 <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Capacitance fluctuation&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Capacitance [mF]&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Zmiana pojemności w czasie&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Czas [s]&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Pojemność [mF]&#39;</span><span class="p">,</span>
     <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
 <span class="c1">#     &#39;xlim&#39;: (0, 700),</span>
     <span class="s1">&#39;animation_duration&#39;</span><span class="p">:</span> <span class="mi">100</span> <span class="c1"># spr puzniej</span>
 <span class="p">}</span>
 
 <span class="c1"># wykres pojemności w czasie, zal. od drgań</span>
-<span class="n">vboxcom</span> <span class="o">=</span> <span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">pojemnosc</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span> <span class="n">f_wid</span><span class="p">,</span> <span class="n">eoer</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">1.00054</span><span class="p">),</span> <span class="n">S</span><span class="o">=</span><span class="n">S_wid</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="n">d_wid</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">opts</span> <span class="p">)</span> 
+<span class="n">cap</span> <span class="o">=</span> <span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">pojemnosc</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span> <span class="n">f_wid</span><span class="p">,</span> <span class="n">eoer</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">1.00054</span><span class="p">),</span> <span class="n">S</span><span class="o">=</span><span class="n">S_wid</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="n">d_wid</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A_wid</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">opts</span> <span class="p">)</span> 
 
 <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Accelerometer Voltage Output&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Output Voltage [V]&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Napięcie wyjściowe akcelerometru&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Czas [s]&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Napięcie Wyjściowe [V]&#39;</span><span class="p">,</span>
     <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
 <span class="c1">#     &#39;xlim&#39;: (0, 700),</span>
     <span class="s1">&#39;animation_duration&#39;</span><span class="p">:</span> <span class="mi">100</span> <span class="c1"># spr puzniej</span>
 <span class="p">}</span>
 
 <span class="c1"># nbi.line(time, y_values, f=(0.5,10))</span>
-<span class="n">voltage</span> <span class="o">=</span> <span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">napiecie</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span> <span class="n">f_wid</span><span class="p">,</span> <span class="n">eoer</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">1.00054</span><span class="p">),</span> <span class="n">S</span><span class="o">=</span><span class="n">S_wid</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="n">d_wid</span><span class="p">,</span> <span class="n">Vs</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">options</span><span class="o">=</span><span class="n">opts</span><span class="p">)</span>
+<span class="n">voltage</span> <span class="o">=</span> <span class="n">nbi</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">napiecie</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span> <span class="n">f_wid</span><span class="p">,</span> <span class="n">eoer</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">1.00054</span><span class="p">),</span> <span class="n">S</span><span class="o">=</span><span class="n">S_wid</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="n">d_wid</span><span class="p">,</span> <span class="n">Vs</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="n">A</span><span class="o">=</span><span class="n">A_wid</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">opts</span><span class="p">)</span>
 
 <span class="n">htmlText</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&lt;h2&gt; Symulator Akcelerometru Pojemnościowego &lt;/h2&gt; </span><span class="se">\</span>
-<span class="s2">    &lt;br&gt;&lt;p&gt; f - czestotliwosc drgań obiektu&lt;/p&gt; </span><span class="se">\</span>
-<span class="s2">    &lt;p&gt; S - suma powierzchni okładek kondensatora grzebieniowego&lt;/p&gt; </span><span class="se">\</span>
-<span class="s2">    &lt;p&gt; d - dystans między okładkami kondensatora w stanie ustalonym (brak drgań)&lt;/p&gt;&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&lt;h2&gt; Symulator Akcelerometru Pojemnościowego &lt;/h2&gt; </span><span class="se">\</span>
+<span class="s1">    &lt;a href=&quot;file:///C:/Users/Wojtek/Dropbox/StudiaMGR_2/Proj sensorkow/P/inst.html&quot;&gt;Instrukcja&lt;/a&gt; </span><span class="se">\</span>
+<span class="s1">    &lt;br&gt;&lt;p&gt; f - czestotliwosc drgań obiektu&lt;/p&gt; </span><span class="se">\</span>
+<span class="s1">    &lt;p&gt; S - suma powierzchni okładek kondensatora grzebieniowego&lt;/p&gt; </span><span class="se">\</span>
+<span class="s1">    &lt;p&gt; d - dystans między okładkami kondensatora w stanie ustalonym (brak drgań)&lt;/p&gt; </span><span class="se">\</span>
+<span class="s1">    &lt;p&gt; A - Amplituda drgań wibrującego obiektu &lt;/p&gt;&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">display</span><span class="p">(</span><span class="n">htmlText</span><span class="p">)</span>
 
-<span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">vboxcom</span><span class="p">,</span><span class="n">voltage</span><span class="p">])</span>
+
+
+<span class="n">VpA</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">voltage</span><span class="p">,</span><span class="n">A_V</span><span class="p">])</span>
+<span class="n">CpA</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">cap</span><span class="p">,</span><span class="n">A_C</span><span class="p">])</span>
+<span class="c1"># interact(ampl_V,x=2)</span>
+<span class="c1"># av = interactive(pojemnosc,x=fixed(0),f=fixed(0),eoer=fixed(1.00054),S=S_wid, d = d_wid, A = A_wid)</span>
+
+<span class="c1"># print(av.result)</span>
+
+<span class="n">dis</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">CpA</span><span class="p">,</span><span class="n">VpA</span><span class="p">])</span>
+
+
+<span class="n">display</span><span class="p">(</span><span class="n">dis</span><span class="p">)</span>
+
+
+<span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13341,23 +13513,6 @@ div#notebook {
 
 </div>
 
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
 
