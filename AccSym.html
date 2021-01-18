@@ -13114,171 +13114,17 @@ div#notebook {
 
   
 
-  <div class="
+  <div class="nbinteract-hide_in nbinteract-hide_out
       cell border-box-sizing code_cell rendered">
     <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">Layout</span>
-<span class="kn">import</span> <span class="nn">IPython</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">pi</span>
-
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span>
-    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
-
-<span class="n">aw</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
-    <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-    <span class="nb">max</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
-    <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;f [Hz]:&#39;</span><span class="p">,</span>
-    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="c1">#     orientation=&#39;vertical&#39;,</span>
-    <span class="n">readout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="c1">#     readout_format=&#39;f&#39;</span>
-<span class="p">)</span>
-<span class="n">bw</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
-    <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-    <span class="nb">max</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
-    <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;f [Hz]:&#39;</span><span class="p">,</span>
-    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="c1">#     orientation=&#39;vertical&#39;,</span>
-    <span class="n">readout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="c1">#     readout_format=&#39;f&#39;</span>
-<span class="p">)</span>
-
-<span class="n">w</span> <span class="o">=</span> <span class="n">interactive</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">aw</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">bw</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">aw</span><span class="p">)</span>
-
-
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">import</span> <span class="nn">time</span>
-
-
-
-<span class="n">A_V</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="n">aw</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
-    <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;Type something&#39;</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;String:&#39;</span><span class="p">,</span>
-    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">amp_V</span><span class="p">(</span><span class="n">A_V</span><span class="p">):</span>   
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
-    <span class="n">A_V</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">aw</span><span class="o">.</span><span class="n">value</span><span class="o">+</span><span class="n">bw</span><span class="o">.</span><span class="n">value</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">A_V</span><span class="p">)</span>
-
-<span class="n">thread2</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">amp_V</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">A_V</span><span class="p">,))</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">A_V</span><span class="p">)</span>
-<span class="n">thread2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="n">progress</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatProgress</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="n">progress</span><span class="p">):</span>
-    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
-        <span class="n">A_V</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">2</span><span class="o">+</span><span class="n">aw</span><span class="o">.</span><span class="n">value</span>
-
-<span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">work</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">progress</span><span class="p">,))</span>
-<span class="n">display</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>
-<span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
+<span class="c1"># nbi:hide_out</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
-<div class="output_area">
-
-    
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>a
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
 </div>
 </div>
 
